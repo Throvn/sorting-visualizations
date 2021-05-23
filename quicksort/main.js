@@ -12,7 +12,7 @@ const spawnPillars = (numOfPillars) => {
     // pillar.style.backgroundColor =
     //  "#" + "f9" + Math.floor(randomNumber * 255).toString(16) + "5d";
     pillar.style.backgroundColor =
-      "#54" + Math.floor(randomNumber * 250).toString(16) + "ff";
+      "#ff" + Math.floor(randomNumber * 100).toString(16) + "60";
     pillar.style.backgroundColor = $container.appendChild(pillar);
   }
 };
@@ -24,30 +24,62 @@ spawnPillars(numOfElements);
 
 let overallArray = [];
 
-const sortPillarsInsertionSort = () => {
-  let i, key, j;
-  let arr = [...$container.children];
-  for (i = 1; i < arr.length; i++) {
-    key = arr[i];
-    j = i - 1;
-
-    /* Move elements of arr[0..i-1], that are 
-        greater than key, to one position ahead 
-        of their current position */
-    while (
-      j >= 0 &&
-      Number(arr[j].style.height.replace("%", "")) >
-        Number(key.style.height.replace("%", ""))
+function partition(arr, start, end) {
+  // Taking the last element as the pivot
+  const pivotValue = arr[end];
+  let pivotIndex = start;
+  for (let i = start; i < end; i++) {
+    if (
+      Number(arr[i].style.height.replace("%", "")) <
+      Number(pivotValue.style.height.replace("%", ""))
     ) {
-      arr[j + 1] = arr[j];
-      j = j - 1;
+      // Swapping elements
+      [arr[i], arr[pivotIndex]] = [arr[pivotIndex], arr[i]];
+      // Moving to next element
+      pivotIndex++;
     }
-    arr[j + 1] = key;
+  }
+
+  // Putting the pivot value in the middle
+  [arr[pivotIndex], arr[end]] = [arr[end], arr[pivotIndex]];
+  return pivotIndex;
+}
+
+function quickSortIterative(arr) {
+  // Creating an array that we'll use as a stack, using the push() and pop() functions
+  stack = [];
+
+  // Adding the entire initial array as an "unsorted subarray"
+  stack.push(0);
+  stack.push(arr.length - 1);
+
+  // There isn't an explicit peek() function
+  // The loop repeats as long as we have unsorted subarrays
+  while (stack[stack.length - 1] >= 0) {
+    // Extracting the top unsorted subarray
+    end = stack.pop();
+    start = stack.pop();
+
+    pivotIndex = partition(arr, start, end);
+
+    // If there are unsorted elements to the "left" of the pivot,
+    // we add that subarray to the stack so we can sort it later
+    if (pivotIndex - 1 > start) {
+      stack.push(start);
+      stack.push(pivotIndex - 1);
+    }
+
+    // If there are unsorted elements to the "right" of the pivot,
+    // we add that subarray to the stack so we can sort it later
+    if (pivotIndex + 1 < end) {
+      stack.push(pivotIndex + 1);
+      stack.push(end);
+    }
     overallArray.push([...arr]);
   }
-};
+}
 
-sortPillarsInsertionSort();
+quickSortIterative([...$container.children]);
 
 let index = 0;
 
@@ -87,7 +119,7 @@ document.getElementById("numOfElements").addEventListener("input", () => {
   spawnPillars(numOfElements);
 
   overallArray = [];
-  sortPillarsInsertionSort();
+  quickSortIterative([...$container.children]);
   index = 0;
 });
 
@@ -96,6 +128,6 @@ document.getElementById("repeat").addEventListener("click", () => {
   spawnPillars(numOfElements);
 
   overallArray = [];
-  sortPillarsInsertionSort([...$container.children]);
+  quickSortIterative([...$container.children]);
   index = 0;
 });

@@ -1,0 +1,14 @@
+#container {
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+}
+
+.vertical-bar {
+    background-color: #8f8cc9;
+    display: inline-block;
+}
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+}

@@ -12,7 +12,7 @@ const spawnPillars = (numOfPillars) => {
     // pillar.style.backgroundColor =
     //  "#" + "f9" + Math.floor(randomNumber * 255).toString(16) + "5d";
     pillar.style.backgroundColor =
-      "#54" + Math.floor(randomNumber * 250).toString(16) + "ff";
+      "#ff" + Math.floor(randomNumber * 100).toString(16) + "60";
     pillar.style.backgroundColor = $container.appendChild(pillar);
   }
 };
@@ -24,30 +24,57 @@ spawnPillars(numOfElements);
 
 let overallArray = [];
 
-const sortPillarsInsertionSort = () => {
-  let i, key, j;
-  let arr = [...$container.children];
-  for (i = 1; i < arr.length; i++) {
-    key = arr[i];
-    j = i - 1;
+const mergeSort = (arr) => {
+  //Create two arrays for sorting
+  let sorted = Array.from(arr);
+  let n = sorted.length;
+  let buffer = new Array(n);
 
-    /* Move elements of arr[0..i-1], that are 
-        greater than key, to one position ahead 
-        of their current position */
-    while (
-      j >= 0 &&
-      Number(arr[j].style.height.replace("%", "")) >
-        Number(key.style.height.replace("%", ""))
-    ) {
-      arr[j + 1] = arr[j];
-      j = j - 1;
+  for (let size = 1; size < n; size *= 2) {
+    for (let leftStart = 0; leftStart < n; leftStart += 2 * size) {
+      //Get the two sub arrays
+      let left = leftStart,
+        right = Math.min(left + size, n),
+        leftLimit = right,
+        rightLimit = Math.min(right + size, n);
+
+      //Merge the sub arrays
+      merge(left, right, leftLimit, rightLimit, sorted, buffer);
     }
-    arr[j + 1] = key;
-    overallArray.push([...arr]);
+    //Swap the sorted sub array and merge them
+    let temp = sorted;
+    sorted = buffer;
+    buffer = temp;
+    overallArray.push([...sorted]);
+  }
+  overallArray.push([...sorted]);
+  return sorted;
+};
+
+const merge = (left, right, leftLimit, rightLimit, sorted, buffer) => {
+  let i = left;
+  //Compare the two sub arrays and merge them in the sorted order
+  while (left < leftLimit && right < rightLimit) {
+    if (
+      Number(sorted[left].style.height.replace("%", "")) <=
+      Number(sorted[right].style.height.replace("%", ""))
+    ) {
+      buffer[i++] = sorted[left++];
+    } else {
+      buffer[i++] = sorted[right++];
+    }
+  }
+  //If there are elements in the left sub arrray then add it to the result
+  while (left < leftLimit) {
+    buffer[i++] = sorted[left++];
+  }
+  //If there are elements in the right sub array then add it to the result
+  while (right < rightLimit) {
+    buffer[i++] = sorted[right++];
   }
 };
 
-sortPillarsInsertionSort();
+mergeSort([...$container.children]);
 
 let index = 0;
 
@@ -87,7 +114,7 @@ document.getElementById("numOfElements").addEventListener("input", () => {
   spawnPillars(numOfElements);
 
   overallArray = [];
-  sortPillarsInsertionSort();
+  mergeSort([...$container.children]);
   index = 0;
 });
 
@@ -96,6 +123,6 @@ document.getElementById("repeat").addEventListener("click", () => {
   spawnPillars(numOfElements);
 
   overallArray = [];
-  sortPillarsInsertionSort([...$container.children]);
+  mergeSort([...$container.children]);
   index = 0;
 });

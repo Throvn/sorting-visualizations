@@ -1,4 +1,7 @@
 const $container = document.getElementById("container");
+
+const toast = new bootstrap.Toast(document.getElementById("toast"), {});
+
 const spawnPillars = (numOfPillars) => {
   for (let i = 0; i < numOfPillars; i++) {
     const pillar = document.createElement("div");
@@ -16,24 +19,41 @@ const spawnPillars = (numOfPillars) => {
 
 let speed = 100;
 let numOfElements = 100;
+let overallArray = [];
 
 spawnPillars(numOfElements);
 
-const sortPillars = () => {
-  for (let i = 0; i < $container.children.length - 1; i++) {
-    if (
-      Number($container.children[i].style.height.replace("%", "")) >
-      Number($container.children[i + 1].style.height.replace("%", ""))
-    ) {
-      setTimeout(() => {
-        $container.children[i + 1].parentNode.insertBefore(
-          $container.children[i + 1],
-          $container.children[i]
-        );
-      });
+const bubbleSort = (arr) => {
+  for (let j = 0; j < arr.length; j++) {
+    for (let i = 0; i < arr.length - 1; i++) {
+      if (
+        Number(arr[i].style.height.replace("%", "")) >
+        Number(arr[i + 1].style.height.replace("%", ""))
+      ) {
+        const temp = arr[i + 1];
+        arr[i + 1] = arr[i];
+        arr[i] = temp;
+      }
     }
+    overallArray.push([...arr]);
   }
 };
+
+bubbleSort([...$container.children]);
+
+let index = 0;
+
+const sortPillars = () => {
+  if (index < overallArray.length) {
+    $container.innerHTML = "";
+    $container.append(...overallArray[index++]);
+  } else {
+    clearInterval(running);
+    running = undefined;
+    toast.show();
+  }
+};
+
 let running = undefined;
 document.getElementById("start").addEventListener("click", () => {
   if (!running) {
@@ -57,4 +77,16 @@ document.getElementById("numOfElements").addEventListener("input", () => {
   numOfElements = document.getElementById("numOfElements").value;
   $container.innerHTML = "";
   spawnPillars(numOfElements);
+
+  bubbleSort([...$container.children]);
+  index = 0;
+});
+
+document.getElementById("repeat").addEventListener("click", () => {
+  $container.innerHTML = "";
+  spawnPillars(numOfElements);
+
+  overallArray = [];
+  bubbleSort([...$container.children]);
+  index = 0;
 });

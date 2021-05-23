@@ -7,14 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-
+    <link rel="shortcut icon" href="../assets/favicon.png" type="image/png">
     <title>Sorting Visualization</title>
     <link rel="stylesheet" href="../assets/styles.css">
-    <style>
-        .vertical-bar {
-            background-color: #5418ff;
-        }
-    </style>
 </head>
 
 <body>
@@ -53,19 +48,22 @@
                         <div class="p-4">
                             <ul class="list-unstyled">
                                 <li class="my-3">
-                                    <h6 class="text-left">Insertion Sort</h6>
+                                    <h6 class="text-left">Bubble Sort</h6>
                                 </li>
                                 <li class="my-1">
-                                    <a class="text-decoration-none link-secondary" href="../bubblesort/">Bubble sort</a>
+                                    <a class="text-decoration-none link-secondary" href="../heapsort/">Heapsort</a>
                                 </li>
                                 <li class="my-1">
-                                    <a class="text-decoration-none link-secondary my-2" href="../heapsort/">Heapsort</a>
+                                    <a class="text-decoration-none link-secondary my-2"
+                                        href="../insertionsort/">Insertion
+                                        sort</a>
                                 </li>
                                 <li class="my-1">
                                     <a class="text-decoration-none link-secondary" href="../mergesort/">Merge sort</a>
                                 </li>
                                 <li class="my-1">
-                                    <a class="text-decoration-none link-secondary" href="../quicksort/">Quicksort</a>
+                                    <a class="text-decoration-none link-secondary" href="../quicksort/" target="_blank"
+                                        rel="noopener noreferrer">Quicksort</a>
                                 </li>
                             </ul>
 
@@ -113,7 +111,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row h-25">
+                <div class="row h-25 overflow-visible">
                     <div class="col text-center py-3">
                         <div class="border d-inline-block p-3 rounded">
                             <h4>Controls</h4>
@@ -166,11 +164,143 @@
                         </div>
 
                     </div>
+                    <div class="col-12">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="text-center">
+                                        <svg class="mt-3 mb-5" style="width: 50px;" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24" fill="#000">
+                                            <path
+                                                d="M 19.990234 3.9863281 A 1.0001 1.0001 0 0 0 19.292969 4.2929688 L 12 11.585938 L 4.7070312 4.2929688 A 1.0001 1.0001 0 0 0 3.9902344 3.9902344 A 1.0001 1.0001 0 0 0 3.2929688 5.7070312 L 11.292969 13.707031 A 1.0001 1.0001 0 0 0 12.707031 13.707031 L 20.707031 5.7070312 A 1.0001 1.0001 0 0 0 19.990234 3.9863281 z M 19.990234 9.9863281 A 1.0001 1.0001 0 0 0 19.292969 10.292969 L 12 17.585938 L 4.7070312 10.292969 A 1.0001 1.0001 0 0 0 3.9902344 9.9902344 A 1.0001 1.0001 0 0 0 3.2929688 11.707031 L 11.292969 19.707031 A 1.0001 1.0001 0 0 0 12.707031 19.707031 L 20.707031 11.707031 A 1.0001 1.0001 0 0 0 19.990234 9.9863281 z"
+                                                fill="#000" /></svg>
+                                    </div>
+
+                                    <h1 class="text-center" style="font-family: 'Times New Roman', Times, serif;">How
+                                        does
+                                        <u>Bubble Sort</u> work anyways?</h1>
+                                    <br>
+
+                                    <div class="row">
+                                        <div class="col-12 col-md-8 col-lg-7 mx-auto">
+                                            <p class="text-left border-start border-5 ps-3 rounded">
+                                                <q>
+                                                    Bubble sort, sometimes referred to as sinking sort, is a simple
+                                                    sorting
+                                                    algorithm that repeatedly steps through the list, compares adjacent
+                                                    elements
+                                                    and
+                                                    swaps them if they are in the wrong order
+                                                </q> –
+                                                <em>Wikipedia</em>
+                                            </p>
+                                            <h5>Sounds easy?</h5>
+                                            <p>
+                                                It is! And to be honest there isn't much more to it, so let's look right
+                                                at the code. It should be very self explanatory. Switch the first
+                                                and second item if the second one is smaller. Then move on
+                                                and check if the second element is smaller than the third. If it is
+                                                switch them again... This is why in the visualzation above the ordered
+                                                elements start to apear mostly at the left and the right side at first.
+                                            </p>
+                                            <code>
+                                                <pre class="bg-light p-3 rounded">
+    procedure bubbleSort(A : list of sortable items)
+        n := length(A)
+        repeat
+            swapped := false
+            for i := 1 to n-1 inclusive do
+                <em>/* if this pair is out of order */</em>
+                if A[i-1] > A[i] then
+                    <em>/* swap them and remember something changed */</em>
+                    swap(A[i-1], A[i])
+                    swapped := true
+                end if
+            end for
+        until not swapped
+    end procedure</pre>
+                                            </code>
+
+                                            <div class="alert alert-dark border-0" role="alert">
+                                                <h4 class="alert-heading">Questions to think about</h4>
+                                                <ol>
+                                                    <li>What runtime does bubble sort have?
+                                                        <ul>
+                                                            <li>
+                                                                on average and
+                                                            </li>
+                                                            <li>
+                                                                worst case
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>Can you implement it yourself?</li>
+                                                </ol>
+                                            </div>
+                                            <h4>Answers</h4>
+                                            <ol>
+                                                <li>
+                                                    <p>
+                                                        Let's look at the pseudocode in more detail. There are two loops
+                                                        in the
+                                                        function. One in line 3 and the for loop in line 5. Both of them
+                                                        iterate
+                                                        roughly over the whole array (or list), so we can say it takes
+                                                        <span style="font-family: 'Times New Roman', Times, serif;">n *
+                                                            n</span>
+                                                        operations. Or if we simplify <span
+                                                            style="font-family: 'Times New Roman', Times, serif;">O(n<sup>2</sup>)</span>
+                                                        operations. We disregard
+                                                        simple one time operations because in big O notation we only
+                                                        want a
+                                                        rough estimate of the runtime. And loops are usually the
+                                                        structures that
+                                                        add the most impact to the execution duration.
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <p>
+                                                        I hope it wasn't such a burden for you, but it should have been
+                                                        straight forward. Here are some data sets you can test your
+                                                        algorithm on:
+                                                        <ul>
+                                                            <li>0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10</li>
+                                                            <li>10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0</li>
+                                                            <li>5, 5, 5, 2, 2, 2, 9, 9, 9, 5, 6, 1</li>
+                                                            <li>6, 4, 8, 3, 8, 4, 9, 5, 0, 4, 2, 6, 8, 0, 6, 4, 3, 3, 5,
+                                                                7</li>
+                                                        </ul>
+                                                    </p>
+                                                    <p>
+                                                        <h6>The outcomes should be:</h6>
+                                                        <ul>
+                                                            <li>0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10</li>
+                                                            <li>0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10</li>
+                                                            <li>1, 2, 2, 2, 5, 5, 5, 5, 6, 9, 9, 9</li>
+                                                            <li>0, 0, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 6, 6, 6, 7, 8, 8, 8,
+                                                                9</li>
+                                                        </ul>
+
+                                                    </p>
+                                                    <hr>
+                                                    <div class="d-flex">
+                                                        <a class="text-decoration-none"
+                                                            href="https://en.wikipedia.org/wiki/Bubble_sort">Source</a>
+                                                        <a class="text-decoration-none link-dark mx-auto"
+                                                            href="https://github.com/Throvn">&copy; Louis Stanko</a>
+                                                    </div>
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
     <script src="../assets/bootstrap.bundle.js"></script>
     <script src="./main.js"></script>
     <script src="../assets/style.js"></script>

@@ -1,4 +1,7 @@
 const $container = document.getElementById("container");
+
+const toast = new bootstrap.Toast(document.getElementById("toast"), {});
+
 const spawnPillars = (numOfPillars) => {
   for (let i = 0; i < numOfPillars; i++) {
     const pillar = document.createElement("div");
@@ -102,7 +105,7 @@ const sortPillars = () => {
   } else {
     clearInterval(running);
     running = undefined;
-    console.info("Stopped sorting!");
+    toast.show();
   }
 };
 
@@ -130,6 +133,15 @@ document.getElementById("numOfElements").addEventListener("input", () => {
   $container.innerHTML = "";
   spawnPillars(numOfElements);
 
+  heapSort([...$container.children]);
+  index = 0;
+});
+
+document.getElementById("repeat").addEventListener("click", () => {
+  $container.innerHTML = "";
+  spawnPillars(numOfElements);
+
+  overallArray = [];
   heapSort([...$container.children]);
   index = 0;
 });
