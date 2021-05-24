@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #f0f0f4;
+            height: 100vh;
+        }
+
+        .sort {
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        .bubble {
+            background-color: #ffd8be;
+        }
+
+        .bubble:hover {
+            -webkit-box-shadow: 0px 0px 10px rgba(255, 216, 190, 1);
+            -moz-box-shadow: 0px 0px 10px rgba(255, 216, 190, 1);
+            box-shadow: 0px 0px 10px rgba(255, 216, 190, 1);
+        }
+
+        .merge {
+            background-color: #f6aee4;
+        }
+
+        .merge:hover {
+            -webkit-box-shadow: 0px 0px 10px #f6aee4;
+            -moz-box-shadow: 0px 0px 10px #f6aee4;
+            box-shadow: 0px 0px 10px #f6aee4;
+        }
+
+        .insertion {
+            background-color: #d7baff;
+        }
+
+        .insertion:hover {
+            -webkit-box-shadow: 0px 0px 10px #d7baff;
+            -moz-box-shadow: 0px 0px 10px #d7baff;
+            box-shadow: 0px 0px 10px #d7baff;
+        }
+
+        .heap {
+            background-color: #a3e3fd;
+        }
+
+        .quick {
+            background-color: #a0f5cf;
+        }
+
+        .bg-heap {
+            z-index: -100;
+            background-color: #a3e3fd;
+            position: relative;
+            height: 188px;
+            margin-top: -100px;
+            border-radius: 25px;
+            animation: heap-to-quick 25s ease 0s infinite alternate;
+        }
+
+        .bg-heap:hover {
+            -webkit-box-shadow: 0px 0px 10px #a3e3fd;
+            -moz-box-shadow: 0px 0px 10px #a3e3fd;
+            box-shadow: 0px 0px 10px #a3e3fd;
+        }
+
+        .bg-quick {
+            z-index: -100;
+            background-color: #a0f5cf;
+            position: relative;
+            height: 188px;
+            margin-top: -100px;
+            border-radius: 25px;
+            animation: quick-to-heap 25s ease 0s infinite alternate;
+        }
+
+        h1 {
+            word-wrap: break-word;
+        }
+
+        @keyframes heap-to-quick {
+            0% {
+                background-color: #a3e3fd;
+                top: 0;
+                left: 0;
+            }
+
+            5% {
+                background-color: #a0f5cf;
+                left: 53%;
+                top: 115%;
+            }
+
+            70% {
+                background-color: #a0f5cf;
+                left: 53%;
+                top: 115%;
+            }
+
+            75% {
+                background-color: #a3e3fd;
+                left: 0;
+                top: 0;
+            }
+        }
+
+        @keyframes quick-to-heap {
+            0% {
+                background-color: #a0f5cf;
+
+                right: 0;
+                bottom: 0;
+            }
+
+            5% {
+                background-color: #a3e3fd;
+                right: 54%;
+                bottom: 117%;
+            }
+
+            70% {
+                background-color: #a3e3fd;
+                right: 54%;
+                bottom: 117%;
+            }
+
+            75% {
+                background-color: #a0f5cf;
+                right: 0px;
+                bottom: 0px;
+            }
+
+            100% {
+                background-color: #a0f5cf;
+                right: 0px;
+                bottom: 0px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container h-100 d-md-none">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center my-5" style="font-family: 'Times New Roman', Times, serif;">
+                    Sorting
+                    Visualizations
+                </h1>
+            </div>
+            <div class="col-12">
+                <div class="p-3" style="height: 220px;">
+                    <div class="bubble sort w-100 h-100 p-4">
+                        <h1 class="fw-bolder">Bubble Sort</h1>
+                    </div>
+                </div>
+                <div class="p-3" style="height: 220px;">
+                    <div class="heap sort w-100 h-100 p-4">
+                        <h1 class="fw-bolder">Heap Sort</h1>
+                    </div>
+                </div>
+                <div class="p-3" style="height: 220px;">
+                    <div class="merge sort w-100 h-100 p-4">
+                        <h1 class="fw-bolder">Merge Sort</h1>
+                    </div>
+                </div>
+                <div class="p-3" style="height: 220px;">
+                    <div class="insertion sort w-100 h-100 p-4">
+                        <h1 class="fw-bolder">Insertion Sort</h1>
+                    </div>
+                </div>
+                <div class="p-3" style="height: 220px;">
+                    <div class="quick sort w-100 h-100 p-4">
+                        <h1 class="fw-bolder">Quick Sort</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container h-100 d-none d-md-block">
+        <div class="row align-items-center h-100">
+            <div class="col-12 mx-auto">
+                <div class="h-100 border-primary justify-content-center">
+                    <div class="row justify-content-center">
+                        <div class="col-12">
+                            <h1 class="text-center mb-5"
+                                style="font-family: 'Times New Roman', Times, serif; font-size: 80px; line-height: 80px;">
+                                Sorting
+                                Visualizations
+                            </h1>
+                        </div>
+
+                        <div class="bubble sort col-md-4 d-inline-block p-4 m-3 position-relative"
+                            style="width: 220px;">
+                            <h1 class="fw-bolder">Bubble Sort</h1>
+                            <a class="text-decoration-none link-dark stretched-link" href="./bubblesort/"
+                                target="_blank" rel="noopener noreferrer"></a>
+                        </div>
+
+                        <div class="col-8">
+                            <div class="row">
+                                <div class="col-md-8 p-3 position-relative" style="height: 220px;">
+                                    <h1 class="fw-bolder p-4">Heap Sort</h1>
+                                    <div class="bg-heap w-100 p-4"></div>
+                                    <a class="text-decoration-none link-dark stretched-link" href="./heapsort/"
+                                        target="_blank" rel="noopener noreferrer"></a>
+                                </div>
+                                <div class="col-md-4 p-3 position-relative" style="height: 220px;">
+                                    <div class="merge sort w-100 h-100 p-4">
+                                        <h1 class="fw-bolder">Merge Sort</h1>
+                                        <a class="text-decoration-none link-dark stretched-link" href="./mergesort/"
+                                            target="_blank" rel="noopener noreferrer"></a>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 p-3 position-relative" style="height: 220px;">
+                                    <div class="insertion sort w-100 h-100 p-4" style="border-radius: 25px;">
+                                        <h1 class="fw-bolder position-relative">Insertion Sort</h1>
+                                        <a class="text-decoration-none link-dark stretched-link" href="./insertionsort/"
+                                            target="_blank" rel="noopener noreferrer"></a>
+                                    </div>
+                                </div>
+                                <div class="col-md-8 p-3 position-relative" style="height: 220px;">
+                                    <h1 class="fw-bolder p-4">Quick Sort</h1>
+                                    <div class="bg-quick w-100 p-4"></div>
+                                    <a class="text-decoration-none link-dark stretched-link" href="./quicksort/"
+                                        target="_blank" rel="noopener noreferrer"></a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
