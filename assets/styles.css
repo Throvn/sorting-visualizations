@@ -12,3 +12,10 @@
 h1 {
     font-family: Arial, Helvetica, sans-serif;
 }
+
+#sidebar-control-collapsed {
+    left: 10px;
+    bottom: 10px;
+    display: none;
+    z-index: 100000;
+}

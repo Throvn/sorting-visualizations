@@ -7,14 +7,13 @@ const $mainContent = document.getElementById("main");
 
 $sidebarBtn.addEventListener("click", () => {
   $sidebar.style.display = "none";
-  $mainContent.classList.replace("col-9", "col-12");
-  $mainContent.classList.remove("offset-3");
+  $mainContent.className = "col-12 h-100";
   $sidebarBtnCollapsed.style.display = "inline-block";
 });
 
 $sidebarBtnCollapsed.addEventListener("click", () => {
-  $mainContent.classList.replace("col-12", "col-9");
-  $mainContent.classList.add("offset-3");
   $sidebar.style.display = "inline-block";
+  $mainContent.className =
+    "col-12 col-md-9 col-lg-10 offset-lg-2 offset-md-3 h-100";
   $sidebarBtnCollapsed.style.display = "none";
 });

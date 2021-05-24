@@ -13,8 +13,7 @@
 </head>
 
 <body>
-    <button class="btn border position-absolute bg-light position-fixed" id="sidebar-control-collapsed"
-        style="left: 10px; bottom: 10px; display: none;">
+    <button class="btn border position-absolute bg-light position-fixed" id="sidebar-control-collapsed">
         <svg style="width: 28.5px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000">
             <path
                 d="M11.109,3L11.109,3C9.78,3,8.988,4.481,9.725,5.587L14,12l-4.275,6.413C8.988,19.519,9.78,21,11.109,21h0 c0.556,0,1.076-0.278,1.385-0.741l4.766-7.15c0.448-0.672,0.448-1.547,0-2.219l-4.766-7.15C12.185,3.278,11.666,3,11.109,3z"
@@ -35,7 +34,7 @@
                     </div>
                 </div>
             </div>
-            <div id="sidebar" class="col-3 bg-light position-fixed">
+            <div id="sidebar" class="col-9 col-md-3 col-lg-2 bg-light position-fixed">
                 <div style="height: 85px;" class="col">
                     <h3 class="text-center mt-3" style="font-family: Georgia, 'Times New Roman', Times, serif;">
                         Sorting
@@ -75,19 +74,22 @@
                     <div class="col border-top">
                         <div class="row ms-2"
                             style="position: relative; left: 50%; top: 50%; transform: translate(-50%, -50%);">
-                            <div class="col-auto d-none d-lg-block">
+                            <div class="col-auto d-sm-block d-md-none d-xxl-block">
                                 <img class="rounded-circle" height="40px" width="40px" src="../assets/profileSmall.png"
                                     alt="Louis Stanko">
                             </div>
-                            <div class="col-auto ps-0">
-                                <h6 class="m-0 d-none d-lg-block">Louis Stanko</h6>
-                                <a class="d-none d-md-inline-block text-decoration-none link-secondary"
+                            <div class="col-auto ps-0 align-items-center">
+                                <h6 class="m-0 d-sm-block d-md-none d-xxl-block">Louis Stanko</h6>
+                                <a class="d-sm-inline-block d-md-none d-xxl-inline-block text-decoration-none link-secondary"
                                     href="https://github.com/Throvn/sorting-visualizations/" target="_blank"><svg
                                         style="width: 20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                         fill="#ffffff">
                                         <path
                                             d="M 6 2 C 4.895 2 4 2.895 4 4 L 4 20 C 4 21.105 4.895 22 6 22 L 6 19 C 6 17.343 7.343 16 9 16 L 13 16 C 14.657 16 16 17.343 16 19 L 16 22 L 18 22 C 19.105 22 20 21.105 20 20 L 20 4 C 20 2.895 19.105 2 18 2 L 6 2 z M 7.5 4 L 8.5 4 C 8.776 4 9 4.224 9 4.5 L 9 5.5 C 9 5.776 8.776 6 8.5 6 L 7.5 6 C 7.224 6 7 5.776 7 5.5 L 7 4.5 C 7 4.224 7.224 4 7.5 4 z M 7.5 8 L 8.5 8 C 8.776 8 9 8.224 9 8.5 L 9 9.5 C 9 9.776 8.776 10 8.5 10 L 7.5 10 C 7.224 10 7 9.776 7 9.5 L 7 8.5 C 7 8.224 7.224 8 7.5 8 z M 7.5 12 L 8.5 12 C 8.776 12 9 12.224 9 12.5 L 9 13.5 C 9 13.776 8.776 14 8.5 14 L 7.5 14 C 7.224 14 7 13.776 7 13.5 L 7 12.5 C 7 12.224 7.224 12 7.5 12 z M 9 18 C 8.448 18 8 18.448 8 19 L 8 22.376953 C 8 22.825953 8.4710469 23.117016 8.8730469 22.916016 L 11 21.5 L 13.126953 22.916016 C 13.528953 23.117016 14 22.825953 14 22.376953 L 14 19 C 14 18.448 13.552 18 13 18 L 9 18 z"
-                                            fill="#6d767e" /></svg>Github</a>
+                                            fill="#6d767e" />
+                                    </svg>
+                                    Github
+                                </a>
                             </div>
                             <div class="col text-end">
                                 <button class="btn border" id="sidebar-control">
@@ -103,7 +105,7 @@
                 </div>
 
             </div>
-            <div id="main" class="col-9 offset-3 h-100">
+            <div id="main" class="col-12 col-md-9 col-lg-10 offset-lg-2 offset-md-3 h-100">
                 <div class="row h-75">
                     <div class="col mt-3">
                         <div id="container">
