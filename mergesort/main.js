@@ -9,10 +9,8 @@ const spawnPillars = (numOfPillars) => {
     const randomNumber = Math.random();
     pillar.style.height = randomNumber * 100 + "%";
     pillar.classList.add("vertical-bar");
-    // pillar.style.backgroundColor =
-    //  "#" + "f9" + Math.floor(randomNumber * 255).toString(16) + "5d";
     pillar.style.backgroundColor =
-      "#ff" + Math.floor(randomNumber * 100).toString(16) + "60";
+      "#f6" + Math.floor(randomNumber * 255).toString(16) + "e4";
     pillar.style.backgroundColor = $container.appendChild(pillar);
   }
 };

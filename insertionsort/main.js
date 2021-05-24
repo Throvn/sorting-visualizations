@@ -13,7 +13,7 @@ const spawnPillars = (numOfPillars) => {
     pillar.style.height = randomNumber * 100 + "%";
     pillar.classList.add("vertical-bar");
     pillar.style.backgroundColor =
-      "#54" + Math.floor(randomNumber * 250).toString(16) + "ff";
+      "#d7" + Math.floor(randomNumber * 255).toString(16) + "ff";
     pillar.style.backgroundColor = $container.appendChild(pillar);
   }
 };

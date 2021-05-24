@@ -23,7 +23,9 @@ const spawnPillars = (numOfPillars = 100) => {
 
     // adjust color of pillar based on the pillars height
     pillar.style.backgroundColor =
-      "#19" + Math.floor(randomNumber * 255).toString(16) + "907c";
+      "#ff" + Math.floor(randomNumber * 255).toString(16) + "be";
+    // pillar.style.backgroundColor =
+    //   "#19" + Math.floor(randomNumber * 255).toString(16) + "907c";
 
     // add pillar to the DOM
     $container.appendChild(pillar);
