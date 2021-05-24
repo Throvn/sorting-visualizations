@@ -10,9 +10,11 @@ This is a sorting visualization of five of the most popular sorting algorithms:
 
 ## Demo
 
-![Example Quicksort]()
-
 You can see a [**Demo here**](https://throvn.github.io/demos/sorting-visualization/bubblesort/)
+
+### Example: Quicksort
+
+![Example Quicksort](./doc/Heapsort.gif)
 
 ## Usage
 
@@ -39,3 +41,8 @@ If you experience any issues or miss a sorting algorithm or other functionality 
 - [ ] (Bubblesort) Highlight changed elements
 - [ ] Add documentation to the rest of the algorithms (for a reference now check the `bubblesort/main.js` file.) - Repetitive
 - [ ] (Maybe) Add all algorithms in one file
+
+## Want to contribute?
+
+Every help is welcome!
+Feel free to contact me any time :P
