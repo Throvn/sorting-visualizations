@@ -42,8 +42,20 @@ body {
     background-color: #a3e3fd;
 }
 
+.heap:hover {
+    -webkit-box-shadow: 0px 0px 10px #a3e3fd;
+    -moz-box-shadow: 0px 0px 10px #a3e3fd;
+    box-shadow: 0px 0px 10px #a3e3fd;
+}
+
 .quick {
     background-color: #a0f5cf;
+}
+
+.quick:hover {
+    -webkit-box-shadow: 0px 0px 10px #a0f5cf;
+    -moz-box-shadow: 0px 0px 10px #a0f5cf;
+    box-shadow: 0px 0px 10px #a0f5cf;
 }
 
 .bg-heap {

@@ -10,7 +10,7 @@ This is a sorting visualization of five of the most popular sorting algorithms:
 
 ## Demo
 
-You can see a [**Demo here**](https://throvn.github.io/demos/sorting-visualization/bubblesort/)
+You can see a [**Demo here**](https://throvn.github.io/sorting-visualizations/)
 
 ### Example: Quicksort
 
