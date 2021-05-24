@@ -1,6 +1,9 @@
 const $container = document.getElementById("container");
-
 const toast = new bootstrap.Toast(document.getElementById("toast"), {});
+
+let speed = 100;
+let numOfElements = 100;
+let overallArray = [];
 
 const spawnPillars = (numOfPillars) => {
   for (let i = 0; i < numOfPillars; i++) {
@@ -9,24 +12,17 @@ const spawnPillars = (numOfPillars) => {
     const randomNumber = Math.random();
     pillar.style.height = randomNumber * 100 + "%";
     pillar.classList.add("vertical-bar");
-    // pillar.style.backgroundColor =
-    //  "#" + "f9" + Math.floor(randomNumber * 255).toString(16) + "5d";
     pillar.style.backgroundColor =
       "#54" + Math.floor(randomNumber * 250).toString(16) + "ff";
     pillar.style.backgroundColor = $container.appendChild(pillar);
   }
 };
 
-let speed = 100;
-let numOfElements = 100;
-
 spawnPillars(numOfElements);
 
-let overallArray = [];
-
-const sortPillarsInsertionSort = () => {
+const insertionSort = (arr) => {
   let i, key, j;
-  let arr = [...$container.children];
+
   for (i = 1; i < arr.length; i++) {
     key = arr[i];
     j = i - 1;
@@ -47,7 +43,7 @@ const sortPillarsInsertionSort = () => {
   }
 };
 
-sortPillarsInsertionSort();
+insertionSort([...$container.children]);
 
 let index = 0;
 
@@ -63,6 +59,7 @@ const sortPillars = () => {
 };
 
 let running = undefined;
+
 document.getElementById("start").addEventListener("click", () => {
   if (!running) {
     running = setInterval(sortPillars, speed);
@@ -87,7 +84,7 @@ document.getElementById("numOfElements").addEventListener("input", () => {
   spawnPillars(numOfElements);
 
   overallArray = [];
-  sortPillarsInsertionSort();
+  insertionSort([...$container.children]);
   index = 0;
 });
 
@@ -96,6 +93,6 @@ document.getElementById("repeat").addEventListener("click", () => {
   spawnPillars(numOfElements);
 
   overallArray = [];
-  sortPillarsInsertionSort([...$container.children]);
+  insertionSort([...$container.children]);
   index = 0;
 });

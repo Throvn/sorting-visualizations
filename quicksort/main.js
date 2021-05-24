@@ -45,7 +45,7 @@ function partition(arr, start, end) {
   return pivotIndex;
 }
 
-function quickSortIterative(arr) {
+function quickSort(arr) {
   // Creating an array that we'll use as a stack, using the push() and pop() functions
   stack = [];
 
@@ -79,7 +79,7 @@ function quickSortIterative(arr) {
   }
 }
 
-quickSortIterative([...$container.children]);
+quickSort([...$container.children]);
 
 let index = 0;
 
@@ -119,7 +119,7 @@ document.getElementById("numOfElements").addEventListener("input", () => {
   spawnPillars(numOfElements);
 
   overallArray = [];
-  quickSortIterative([...$container.children]);
+  quickSort([...$container.children]);
   index = 0;
 });
 
@@ -128,6 +128,6 @@ document.getElementById("repeat").addEventListener("click", () => {
   spawnPillars(numOfElements);
 
   overallArray = [];
-  quickSortIterative([...$container.children]);
+  quickSort([...$container.children]);
   index = 0;
 });

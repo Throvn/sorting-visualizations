@@ -1,6 +1,9 @@
 const $container = document.getElementById("container");
-
 const toast = new bootstrap.Toast(document.getElementById("toast"), {});
+
+let speed = 100;
+let numOfElements = 100;
+let overallArray = [];
 
 const spawnPillars = (numOfPillars) => {
   for (let i = 0; i < numOfPillars; i++) {
@@ -14,10 +17,6 @@ const spawnPillars = (numOfPillars) => {
     pillar.style.backgroundColor = $container.appendChild(pillar);
   }
 };
-
-let speed = 100;
-let numOfElements = 100;
-let overallArray = [];
 
 spawnPillars(numOfElements);
 
@@ -95,7 +94,9 @@ const heapSort = (arr, n = arr.length) => {
     overallArray.push([].concat(arr));
   }
 };
+
 heapSort([...$container.children]);
+
 let index = 0;
 
 const sortPillars = () => {
@@ -110,6 +111,7 @@ const sortPillars = () => {
 };
 
 let running = undefined;
+
 document.getElementById("start").addEventListener("click", () => {
   if (!running) {
     running = setInterval(sortPillars, speed);
