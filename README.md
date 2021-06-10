@@ -37,7 +37,7 @@ If you experience any issues or miss a sorting algorithm or other functionality 
 - [ ] Add more sorting algorithms
 - [ ] Add explaination (blog post like) to the algorithms (like on bubble sort)
 - [ ] Refactor code to typescript
-- [ ] Darkmode
+- [x] Darkmode - Based on system settings
 - [ ] (Bubblesort) Highlight changed elements
 - [ ] Add documentation to the rest of the algorithms (for a reference now check the `bubblesort/main.js` file.) - Repetitive
 - [ ] (Maybe) Add all algorithms in one file
